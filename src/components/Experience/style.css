@@ -5,13 +5,16 @@
   margin: 8rem 5rem 0rem 5rem;
 }
 .projectsdet {
-  margin: 8rem 5rem 0rem 5rem;
+  margin: 8rem 5rem 10rem 5rem;
+}
+.skills {
+  margin-bottom: 20rem;
 }
 .blogs {
   margin: 8rem 5rem 0rem 5rem;
 }
 .certificates {
-  margin: 8rem 5rem 0rem 5rem;
+  margin: 8rem 5rem 10rem 5rem;
 }
 .bloglist {
   margin-bottom: 10rem !important;
@@ -28,4 +31,7 @@
 }
 .card-img-top {
   height: 10rem;
+}
+.card-title {
+  font-weight: bold;
 }

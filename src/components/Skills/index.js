@@ -64,7 +64,7 @@ export default function Skills() {
             </Col>
           </Row>
           <br />
-          <Card.Title>Other</Card.Title>
+          <Card.Title>Others</Card.Title>
           <Row>
             <Col>
               {" "}

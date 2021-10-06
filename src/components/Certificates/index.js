@@ -26,7 +26,7 @@ export default function Certificates() {
   return (
     <div className="mainContent">
       <div className="headName"> INTERNSHIP &amp; CERTIFICATES </div>
-      <div className="experiences">
+      <div className="certificates">
         <Card>
           <Card.Body>
             <Card.Title>Newton School</Card.Title>

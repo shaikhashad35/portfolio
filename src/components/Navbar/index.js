@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
-import { IconContext } from "react-icons";
 
 function Navbar() {
-  const [sidebar, setSidebar] = useState(false);
+  //   const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  //   const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
@@ -22,10 +21,23 @@ function Navbar() {
           {SidebarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}>
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
+                {item.title == "Resume" ? (
+                  <Link
+                    to={{
+                      pathname:
+                        "https://drive.google.com/drive/folders/1tr4KTW8Qr-QfhloQxniBehWMGsGQtEy0?usp=sharing",
+                    }}
+                    target="_blank"
+                  >
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                ) : (
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                )}
               </li>
             );
           })}

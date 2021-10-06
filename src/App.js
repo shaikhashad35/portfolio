@@ -22,7 +22,6 @@ function App() {
           <Route path="/projects" component={Projects} />
           <Route path="/certificates" component={Certificates} />
           <Route path="/blogs" component={Blogs} />
-          <Route path="/resume" />
         </Switch>
       </Router>
     </>

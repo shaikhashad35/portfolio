@@ -41,7 +41,7 @@ export const SidebarData = [
   },
   {
     title: "Resume",
-    path: "/resume",
+    path: "https://drive.google.com/drive/folders/1tr4KTW8Qr-QfhloQxniBehWMGsGQtEy0?usp=sharing",
     icon: <FaIcons.FaFileAlt />,
     cName: "nav-text black",
   },
