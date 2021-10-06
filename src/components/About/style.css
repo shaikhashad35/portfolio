@@ -16,6 +16,9 @@
 .linkedin > svg {
   color: #00dff9 !important;
 }
+.github > svg {
+  color: black !important;
+}
 .iconProfile {
   font-size: 4rem;
 }
