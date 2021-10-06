@@ -1,0 +1,26 @@
+.experiences {
+  margin: 8rem 5rem 0rem 5rem;
+}
+.educations {
+  margin: 8rem 5rem 0rem 5rem;
+}
+.projectsdet {
+  margin: 8rem 5rem 0rem 5rem;
+}
+.blogs {
+  margin: 8rem 5rem 0rem 5rem;
+}
+
+.container {
+  margin: 16rem 10rem 7rem 10rem;
+}
+.blogsDetails {
+  height: 22rem;
+  margin-bottom: 3rem;
+}
+.blogsImg {
+  height: 20rem !important;
+}
+.card-img-top {
+  height: 10rem;
+}

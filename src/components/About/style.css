@@ -1,0 +1,27 @@
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+}
+.center h1 {
+  color: lightblue !important;
+}
+.iconsProfile {
+  text-align: center;
+}
+.linkedin > svg {
+  color: #00dff9 !important;
+}
+.iconProfile {
+  font-size: 4rem;
+}
+.email > svg {
+  color: red;
+}
+.phone {
+  color: yellowgreen;
+}
