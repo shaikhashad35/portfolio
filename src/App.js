@@ -7,7 +7,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Certificates from "./components/Certificates";
 import Blogs from "./components/Blogs";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; //localhost:3000/
 function App() {
   return (
     <>
@@ -15,7 +15,6 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={About} />
-          <Route path="/about" component={About} />
           <Route path="/experience" component={Experience} />
           <Route path="/education" component={Education} />
           <Route path="/skills" component={Skills} />

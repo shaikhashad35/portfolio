@@ -13,7 +13,7 @@ function Navbar() {
       <nav className={true ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
-            <Link to="about" className="menu-bars">
+            <Link to="" className="menu-bars">
               <h3> Ashad Shaikh </h3>
               <p> Full Stack Developer</p>
             </Link>
