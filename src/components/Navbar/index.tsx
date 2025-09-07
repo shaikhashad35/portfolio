@@ -177,7 +177,7 @@ const Navbar = () => {
             </NavItem>
           ))}
           <ResumeLink
-            href="https://drive.google.com/drive/folders/1tr4KTW8Qr-QfhloQxniBehWMGsGQtEy0?usp=sharing"
+            href="https://drive.google.com/file/d/1Wx3bFQlSOBRPli49TADByTiBpNIfW86D/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
