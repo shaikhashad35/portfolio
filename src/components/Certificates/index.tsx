@@ -10,7 +10,7 @@ interface Certificate {
 }
 
 const CertificatesContainer = styled.div`
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
 `;
 
@@ -23,19 +23,31 @@ const Title = styled.h2`
 
 const CardsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const Card = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 8px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
     transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
   }
 `;
 
@@ -95,14 +107,12 @@ const certificates: Certificate[] = [
     items: [
       'C# & .NET: Programming',
       'Learning SQL Programming',
-      'HTML Essential Training',
       'Programming Foundation: Databases'
     ]
   },
   {
     title: 'Coursera',
     items: [
-      'Building Web Application in PHP',
       'Introduction to Structured Query Language(SQL)',
       'Programming for Everybody & Data Structures in Python.'
     ]

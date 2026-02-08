@@ -13,7 +13,7 @@ interface Experience {
 }
 
 const ExperienceContainer = styled.div`
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 `;
 
@@ -36,6 +36,13 @@ const ExperienceCard = styled(motion.div)`
   padding: 2rem;
   position: relative;
   overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  transition: ${({ theme }) => theme.transitions.default};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
+  }
 
   &::before {
     content: '';
@@ -115,8 +122,10 @@ const experiences: Experience[] = [
     period: 'Aug 2024 - Present',
     location: 'Remote',
     descriptions: [
-      'Working as Backend Engineer for Microsoft Defender for Endpoints',
-      'Leveraging GitHub Copilot/ChatGPT to prototype backend features, cutting development time nearly in half.'
+      'Built an AI agent leveraging OpenAI GPT-4 to perform hourly health checks on 100+ malware detonation VMs, transforming diagnostics into real-time actionable insights.',
+      'Leveraged GitHub Copilot/ChatGPT to prototype backend features, cutting development time nearly 50%.',
+      'Implemented in-memory file handling in a detonation service to support Antimalware enablement on deployment servers, efficiently processing 50,000+ daily samples.',
+      'Automated upgrade of 100+ malware analysis VMs from EOL OS/tooling to latest versions, reducing security vulnerabilities and improving analysis accuracy.'
     ]
   },
   {

@@ -9,7 +9,9 @@ const HeroContent = styled(motion.div)`
   flex-direction: column;
   gap: 1.5rem;
   max-width: 800px;
-  margin-top: -50px; // Offset for better vertical centering
+  min-height: 100vh;
+  justify-content: center;
+  margin-top: 0;
 `;
 
 const Greeting = styled(motion.span)`
@@ -49,6 +51,41 @@ const Description = styled(motion.p)`
   font-size: 1.1rem;
   line-height: 1.8;
   color: ${({ theme }) => theme.colors.text};
+`;
+
+const HighlightsBar = styled(motion.div)`
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+
+  @media (max-width: 480px) {
+    gap: 1rem;
+    justify-content: center;
+  }
+`;
+
+const Highlight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  span:first-child {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.accent};
+    font-family: ${({ theme }) => theme.fonts.heading};
+  }
+
+  span:last-child {
+    font-size: 0.75rem;
+    color: ${({ theme }) => theme.colors.text};
+    margin-top: 0.3rem;
+    font-family: ${({ theme }) => theme.fonts.heading};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 `;
 
 const SocialLinks = styled(motion.div)`
@@ -120,10 +157,29 @@ const Hero = () => {
         <Subtitle variants={fadeInUp}>Software Engineer II @ Microsoft</Subtitle>
         
         <Description variants={fadeInUp}>
-          Software engineer with 6 years of experience specializing in building robust backend systems
-          and APIs. Passionate about system architecture, scalability, and creating efficient solutions
-          for complex problems.
+          Software Engineer at Microsoft, building security-critical backend systems at scale. 
+          6 years of experience designing scalable microservices, APIs, and cloud-native architectures. 
+          Passionate about leveraging AI to accelerate development and solve complex engineering problems.
         </Description>
+
+        <HighlightsBar variants={fadeInUp}>
+          <Highlight>
+            <span>6+</span>
+            <span>Years Experience</span>
+          </Highlight>
+          <Highlight>
+            <span>4+</span>
+            <span>Companies</span>
+          </Highlight>
+          <Highlight>
+            <span>AI</span>
+            <span>Driven Development</span>
+          </Highlight>
+          <Highlight>
+            <span>10+</span>
+            <span>Services Built</span>
+          </Highlight>
+        </HighlightsBar>
         
         <SocialLinks variants={fadeInUp}>
           {socialLinks.map((link, index) => (

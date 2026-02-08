@@ -13,7 +13,7 @@ import Navbar from './components/Navbar';
 const Hero = lazy(() => import('./components/Hero'));
 const Skills = lazy(() => import('./components/Skills'));
 const Experience = lazy(() => import('./components/Experience'));
-const Projects = lazy(() => import('./components/Projects'));
+// const Projects = lazy(() => import('./components/Projects'));
 const Education = lazy(() => import('./components/Education'));
 const Blogs = lazy(() => import('./components/Blogs'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -27,13 +27,32 @@ const MainContainer = styled.main`
   z-index: 1;
 `;
 
+const Footer = styled.footer`
+  text-align: center;
+  padding: 2rem 1rem;
+  color: ${({ theme }: any) => theme?.colors?.text || '#8892b0'};
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  position: relative;
+  z-index: 1;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      color: #64ffda;
+    }
+  }
+`;
+
 const App: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -53,8 +72,8 @@ const App: FC = () => {
                 <MainContainer>
                   <Hero />
                   <Experience />
-                  <Projects />
                   <Skills />
+                  {/* <Projects /> */}
                   <Education />
                   <Certificates />
                   <Blogs />
@@ -62,6 +81,14 @@ const App: FC = () => {
                 </MainContainer>
               </Suspense>
               <ScrollToTop />
+              <Footer>
+                <p>Built with React & TypeScript</p>
+                <p style={{ marginTop: '0.3rem' }}>
+                  <a href="https://github.com/shaikhashad35/portfolio" target="_blank" rel="noopener noreferrer">
+                    Ashad Shaikh © {new Date().getFullYear()}
+                  </a>
+                </p>
+              </Footer>
             </>
           )}
         </AnimatePresence>

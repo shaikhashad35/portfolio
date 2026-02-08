@@ -13,7 +13,7 @@ interface Project {
 }
 
 const ProjectsContainer = styled.div`
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
 `;
 
@@ -26,14 +26,19 @@ const Title = styled.h2`
 
 const ProjectsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 8px;
-  padding: 2rem;
+  padding: 1.8rem;
   position: relative;
   overflow: hidden;
   transition: ${({ theme }) => theme.transitions.default};

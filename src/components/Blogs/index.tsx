@@ -19,7 +19,7 @@ interface BlogPost {
 }
 
 const BlogsContainer = styled.div`
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
 `;
 
@@ -32,8 +32,18 @@ const Title = styled.h2`
 
 const BlogGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const BlogCard = styled(motion.a)`
@@ -41,6 +51,7 @@ const BlogCard = styled(motion.a)`
   border-radius: 8px;
   overflow: hidden;
   text-decoration: none;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transition: ${({ theme }) => theme.transitions.default};
   position: relative;
   height: 100%;
@@ -49,6 +60,8 @@ const BlogCard = styled(motion.a)`
 
   &:hover {
     transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
 
     .image-overlay {
       opacity: 0.2;
