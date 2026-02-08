@@ -2,6 +2,7 @@
 
 > **Repository:** [github.com/shaikhashad35/portfolio](https://github.com/shaikhashad35/portfolio)
 > **Live Demo:** [shaikhashad35.github.io/portfolio](https://shaikhashad35.github.io/portfolio)
+> **Version:** `0.2.0`
 
 ---
 
@@ -9,13 +10,16 @@
 
 - [Prerequisites](#prerequisites)
 - [Tech Stack](#tech-stack)
+- [Features](#features)
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
 - [Building for Production](#building-for-production)
 - [Deployment](#deployment)
 - [Project Structure](#project-structure)
+- [Design System](#design-system)
 - [Available Scripts](#available-scripts)
 - [Troubleshooting](#troubleshooting)
+- [Changelog](#changelog)
 - [Contact](#contact)
 
 ---
@@ -47,10 +51,27 @@ Make sure you have the following installed on your machine before proceeding:
 | TypeScript `4.9`    | Type-safe JavaScript           |
 | Styled Components   | CSS-in-JS styling              |
 | Framer Motion       | Animations & transitions       |
-| React Icons         | Icon library                   |
+| React Icons         | Icon library (incl. brand colors) |
 | React Scroll        | Smooth scrolling navigation    |
-| Bootstrap `5.1`     | Responsive layout (CDN)        |
 | GitHub Pages        | Hosting & deployment           |
+
+---
+
+## ✨ Features
+
+- **Dark theme** with accent colors and card hover glow effects
+- **Responsive design** — optimized for desktop, tablet, and mobile
+- **Impact highlights bar** in Hero section (Years, Companies, AI, Services)
+- **Brand-colored skill icons** for Python, Django, .NET, Spring Boot, AWS, Azure, GCP
+- **Animated navbar** with underline active indicator
+- **Section dividers** — subtle gradient lines between sections
+- **Lazy-loaded components** for performance
+- **Matrix-style code background** animation
+- **Scroll-to-top** button
+- **OG meta tags** with custom SVG image for social media link previews
+- **SEO optimized** — meta descriptions, keywords, Open Graph tags
+- Sections: Hero, Experience, Skills, Education, Certificates, Blogs, Contact
+- Footer with copyright
 
 ---
 
@@ -141,6 +162,8 @@ This project is configured for **GitHub Pages** deployment.
    - Set the source branch to `gh-pages`
    - Set the folder to `/ (root)`
 
+4. Your site will be live at `https://<your-username>.github.io/portfolio` within a few minutes.
+
 ---
 
 ## 📁 Project Structure
@@ -148,42 +171,43 @@ This project is configured for **GitHub Pages** deployment.
 ```
 portfolio/
 ├── public/                  # Static public assets
-│   ├── index.html           # HTML template
+│   ├── index.html           # HTML template (SEO + OG meta tags)
+│   ├── og-image.svg         # Open Graph image for social previews
 │   ├── favicon.ico          # Favicon
 │   ├── manifest.json        # PWA manifest
 │   └── robots.txt           # SEO robots file
 │
 ├── src/                     # Source code
-│   ├── App.tsx              # Root application component
-│   ├── App.css              # Global app styles
+│   ├── App.tsx              # Root component (section order, footer, lazy loading)
+│   ├── App.css              # Legacy styles (cleaned up)
 │   ├── index.tsx            # Entry point
-│   ├── bg.png               # Background image
 │   │
 │   ├── assets/              # Static assets
-│   │   └── images/          # Project images (blogs, skills, etc.)
+│   │   └── images/          # Skill icons, blog thumbnails
 │   │
 │   ├── components/          # React components
-│   │   ├── Hero/            # Hero/landing section
-│   │   ├── Navbar/          # Navigation bar
-│   │   ├── Experience/      # Work experience section
-│   │   ├── Projects/        # Projects showcase
-│   │   ├── Skills/          # Technical skills section
-│   │   ├── Education/       # Education background
-│   │   ├── Certificates/    # Certifications section
-│   │   ├── Blogs/           # Blog posts section
-│   │   ├── Contact/         # Contact form/info
+│   │   ├── Hero/            # Landing section + impact highlights bar
+│   │   ├── Navbar/          # Navigation bar with animated underline indicator
+│   │   ├── Experience/      # Work experience timeline
+│   │   ├── Skills/          # Technical skills grid (brand-colored icons)
+│   │   ├── Projects/        # Projects showcase (currently commented out)
+│   │   ├── Education/       # Education cards (3-column grid)
+│   │   ├── Certificates/    # Certifications grid (4-column)
+│   │   ├── Blogs/           # Blog posts grid (4-column)
+│   │   ├── Contact/         # Contact CTA card
 │   │   ├── About/           # About me section
 │   │   ├── Navigation/      # Navigation utilities
 │   │   └── common/          # Shared/reusable components
-│   │       ├── CodeBackground.tsx   # Animated code background
+│   │       ├── Section.tsx          # Section wrapper with gradient dividers
+│   │       ├── CodeBackground.tsx   # Matrix-style animated background
 │   │       ├── ErrorBoundary.tsx    # Error boundary wrapper
 │   │       ├── Loading.tsx          # Loading spinner/animation
 │   │       ├── ScrollToTop.tsx      # Scroll-to-top button
 │   │       └── ThemeProvider.tsx     # Theme context provider
 │   │
 │   ├── styles/              # Global styles & theming
-│   │   ├── GlobalStyles.ts  # Global styled-components styles
-│   │   └── theme.ts         # Theme configuration (colors, fonts)
+│   │   ├── GlobalStyles.ts  # Global styles, scrollbar, selection highlight
+│   │   └── theme.ts         # Theme config (colors, accents, card borders, fonts)
 │   │
 │   ├── types/               # TypeScript type definitions
 │   │   ├── environment.d.ts # Environment variable types
@@ -195,10 +219,44 @@ portfolio/
 │       └── performance.ts   # Performance utilities
 │
 ├── build/                   # Production build output (generated)
-├── package.json             # Dependencies & scripts
+├── package.json             # Dependencies & scripts (v0.2.0)
 ├── tsconfig.json            # TypeScript configuration
+├── SETUP.md                 # This file
 └── README.md                # Project overview
 ```
+
+---
+
+## 🎨 Design System
+
+### Theme Colors
+
+| Token           | Value                        | Usage                      |
+| --------------- | ---------------------------- | -------------------------- |
+| `primary`       | `#0a192f`                    | Background                 |
+| `secondary`     | `#112240`                    | Card backgrounds           |
+| `accent`        | `#64ffda`                    | Highlights, links, borders |
+| `accentAlt`     | `#57cbff`                    | Secondary accent (blue)    |
+| `text`          | `#8892b0`                    | Body text                  |
+| `textLight`     | `#ccd6f6`                    | Headings                   |
+| `cardBorder`    | `rgba(100, 255, 218, 0.1)`   | Card borders               |
+| `cardHoverBorder` | `rgba(100, 255, 218, 0.3)` | Card hover borders + glow  |
+
+### Fonts
+
+- **Headings:** JetBrains Mono (monospace)
+- **Body:** Inter (sans-serif)
+
+### Responsive Breakpoints
+
+| Breakpoint | Width    | Layout Changes                           |
+| ---------- | -------- | ---------------------------------------- |
+| `xl`       | 1200px   | Max container width                      |
+| `lg`       | 992px    | —                                        |
+| `md`       | 768px    | Navbar collapses, grids reduce columns   |
+| `sm`       | 576px    | —                                        |
+| `≤480px`   | Mobile   | 3-col skills, 1-col projects/education   |
+| `≤320px`   | Small    | 2-col skills                             |
 
 ---
 
@@ -251,6 +309,30 @@ Make sure the `homepage` field in `package.json` matches your GitHub Pages URL f
 ```json
 "homepage": "https://<username>.github.io/<repo-name>"
 ```
+
+---
+
+## 📝 Changelog
+
+### v0.2.0 (Feb 2026)
+- Major portfolio redesign — improved layout, content, and UX
+- Updated Microsoft experience with detailed AI/backend bullet points
+- Added Python, Django, .NET Core/Framework, Spring Boot, AWS, Azure, GCP to skills
+- Brand-colored skill icons using React Icons
+- Reordered sections: Skills before Projects
+- Full-width responsive grid layouts across all sections
+- Commented out Projects section (pending updates)
+- Removed basic/dated certificates
+- Rewrote Hero with generic Senior SWE positioning + impact highlights bar
+- Design overhaul: card borders with hover glow, navbar active underline, section gradient dividers, styled Contact CTA, text selection highlight, improved scrollbar
+- Removed unused Bootstrap CDN (~160KB savings)
+- Cleaned up legacy App.css styles
+- Reduced loading screen from 2s to 800ms
+- Added og-image.svg for social media link previews
+- Added footer with copyright
+
+### v0.1.0
+- Initial portfolio with React + TypeScript + Styled Components
 
 ---
 
