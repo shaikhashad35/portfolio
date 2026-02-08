@@ -17,7 +17,7 @@ const SectionContainer = styled(motion.section)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.text};
   position: relative;
   overflow: hidden;
@@ -28,15 +28,15 @@ const SectionContainer = styled(motion.section)`
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
-    max-width: 600px;
+    width: 80%;
+    max-width: 700px;
     height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      ${({ theme }) => theme.colors.cardBorder},
       ${({ theme }) => theme.colors.accent}44,
-      ${({ theme }) => theme.colors.cardBorder},
+      ${({ theme }) => theme.colors.accentAlt}66,
+      ${({ theme }) => theme.colors.accent}44,
       transparent
     );
   }

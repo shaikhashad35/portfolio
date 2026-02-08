@@ -7,10 +7,17 @@ const ContactContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropFilter};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   border-radius: 12px;
   padding: 3rem 2rem;
+  transition: ${({ theme }) => theme.transitions.default};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
+  }
 `;
 
 const Title = styled.h2`

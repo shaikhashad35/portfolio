@@ -4,12 +4,19 @@ import Section from '../common/Section';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { FiBriefcase, FiMapPin, FiCalendar } from 'react-icons/fi';
 
+// Inline SVG data URIs for company logos (no external CDN dependency)
+const MICROSOFT_LOGO = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><rect width="11" height="11" fill="%23f25022"/><rect x="12" width="11" height="11" fill="%237fba00"/><rect y="12" width="11" height="11" fill="%2300a4ef"/><rect x="12" y="12" width="11" height="11" fill="%23ffb900"/></svg>`;
+
+// Pre-computed base64 encoded SVG — white background, red "S&P Global" text
+const SP_GLOBAL_LOGO = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEyIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjUwIiB5PSI0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjI2IiBmaWxsPSIjY2MwMDAwIj5TJmFtcDtQPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjIyIiBmaWxsPSIjY2MwMDAwIj5HbG9iYWw8L3RleHQ+PC9zdmc+`;
+
 interface Experience {
   company: string;
   role: string;
   period: string;
   location: string;
   descriptions: string[];
+  logo?: string;
 }
 
 const ExperienceContainer = styled.div`
@@ -31,8 +38,9 @@ const Timeline = styled(motion.div)`
 `;
 
 const ExperienceCard = styled(motion.div)`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 8px;
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropFilter};
+  border-radius: 12px;
   padding: 2rem;
   position: relative;
   overflow: hidden;
@@ -41,7 +49,8 @@ const ExperienceCard = styled(motion.div)`
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.cardHoverBorder};
-    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
+    transform: translateY(-2px);
   }
 
   &::before {
@@ -49,9 +58,10 @@ const ExperienceCard = styled(motion.div)`
     position: absolute;
     top: 0;
     left: 0;
-    width: 2px;
+    width: 3px;
     height: 100%;
-    background-color: ${({ theme }) => theme.colors.accent};
+    background: ${({ theme }) => theme.colors.accentGradient};
+    border-radius: 3px 0 0 3px;
   }
 `;
 
@@ -61,6 +71,20 @@ const CompanyHeader = styled.div`
   align-items: flex-start;
   margin-bottom: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+const CompanyLogo = styled.img`
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+`;
+
+const CompanyInfo = styled.div`
+  display: flex;
+  align-items: center;
   gap: 1rem;
 `;
 
@@ -121,6 +145,7 @@ const experiences: Experience[] = [
     role: 'Software Engineer II',
     period: 'Aug 2024 - Present',
     location: 'Remote',
+    logo: MICROSOFT_LOGO,
     descriptions: [
       'Built an AI agent leveraging OpenAI GPT-4 to perform hourly health checks on 100+ malware detonation VMs, transforming diagnostics into real-time actionable insights.',
       'Leveraged GitHub Copilot/ChatGPT to prototype backend features, cutting development time nearly 50%.',
@@ -133,6 +158,7 @@ const experiences: Experience[] = [
     role: 'Senior Software Engineer',
     period: 'Nov 2021 - Aug 2024',
     location: 'India',
+    logo: SP_GLOBAL_LOGO,
     descriptions: [
       'Engineered a Python package for sharded DB connection management, reducing master DB load by 70% and boosting connection resiliency.',
       'Designed an automated regression testing system for backend service, cutting manual QA cycles by 30%, reducing post release bugs.',
@@ -179,10 +205,13 @@ const Experience = () => {
           {experiences.map((exp, index) => (
             <ExperienceCard key={index} variants={fadeInUp}>
               <CompanyHeader>
-                <div>
-                  <CompanyTitle>{exp.company}</CompanyTitle>
-                  <Role>{exp.role}</Role>
-                </div>
+                <CompanyInfo>
+                  {exp.logo && <CompanyLogo src={exp.logo} alt={`${exp.company} logo`} />}
+                  <div>
+                    <CompanyTitle>{exp.company}</CompanyTitle>
+                    <Role>{exp.role}</Role>
+                  </div>
+                </CompanyInfo>
               </CompanyHeader>
               <MetaInfo>
                 <MetaItem>

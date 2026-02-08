@@ -47,8 +47,9 @@ const BlogGrid = styled(motion.div)`
 `;
 
 const BlogCard = styled(motion.a)`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 8px;
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropFilter};
+  border-radius: 12px;
   overflow: hidden;
   text-decoration: none;
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
@@ -61,7 +62,7 @@ const BlogCard = styled(motion.a)`
   &:hover {
     transform: translateY(-5px);
     border-color: ${({ theme }) => theme.colors.cardHoverBorder};
-    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
 
     .image-overlay {
       opacity: 0.2;

@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
-import { FiHome, FiUser, FiBriefcase, FiCode, FiAward, FiBook, FiMail, FiFileText, FiMenu, FiX } from 'react-icons/fi';
+import { FiHome, FiUser, FiBriefcase, FiCode, FiAward, FiBook, FiMail, FiFileText, FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
+import { useThemeToggle } from '../common/ThemeProvider';
 
 interface NavItem {
   title: string;
@@ -16,10 +17,11 @@ const Header = styled(motion.header)`
   left: 0;
   right: 0;
   height: 70px;
-  background-color: ${({ theme }) => theme.colors.primary}ee;
-  backdrop-filter: blur(10px);
+  background: ${({ theme }) => theme.colors.navBg};
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   z-index: 1000;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background 0.4s ease;
 `;
 
 const NavContainer = styled.nav`
@@ -141,6 +143,34 @@ const ResumeLink = styled.a`
   }
 `;
 
+const NavRightGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const ThemeToggle = styled.button`
+  background: none;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  color: ${({ theme }) => theme.colors.accent};
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: ${({ theme }) => theme.transitions.default};
+  width: 2.2rem;
+  height: 2.2rem;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
+    transform: rotate(20deg);
+  }
+`;
+
 const navItems: NavItem[] = [
   { title: 'Home', to: 'hero', icon: <FiHome /> },
   { title: 'Experience', to: 'experience', icon: <FiBriefcase /> },
@@ -155,6 +185,7 @@ const navItems: NavItem[] = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { isDark, toggleTheme } = useThemeToggle();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -198,14 +229,19 @@ const Navbar = () => {
               {item.title}
             </NavItem>
           ))}
-          <ResumeLink
-            href="https://drive.google.com/file/d/1Wx3bFQlSOBRPli49TADByTiBpNIfW86D/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FiFileText />
-            Resume
-          </ResumeLink>
+          <NavRightGroup>
+            <ThemeToggle onClick={toggleTheme} aria-label="Toggle theme">
+              {isDark ? <FiSun /> : <FiMoon />}
+            </ThemeToggle>
+            <ResumeLink
+              href="https://drive.google.com/file/d/1Wx3bFQlSOBRPli49TADByTiBpNIfW86D/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FiFileText />
+              Resume
+            </ResumeLink>
+          </NavRightGroup>
         </NavLinks>
       </NavContainer>
     </Header>

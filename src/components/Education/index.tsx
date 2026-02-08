@@ -41,8 +41,9 @@ const Timeline = styled(motion.div)`
 `;
 
 const EducationCard = styled(motion.div)`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 8px;
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropFilter};
+  border-radius: 12px;
   padding: 2rem;
   position: relative;
   overflow: hidden;
@@ -52,7 +53,7 @@ const EducationCard = styled(motion.div)`
   &:hover {
     transform: translateY(-5px);
     border-color: ${({ theme }) => theme.colors.cardHoverBorder};
-    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
   }
 
   &::before {
@@ -60,13 +61,10 @@ const EducationCard = styled(motion.div)`
     position: absolute;
     top: 0;
     left: 0;
-    width: 2px;
+    width: 3px;
     height: 100%;
-    background: linear-gradient(
-      to bottom,
-      ${({ theme }) => theme.colors.accent},
-      transparent
-    );
+    background: ${({ theme }) => theme.colors.accentGradient};
+    border-radius: 3px 0 0 3px;
   }
 `;
 

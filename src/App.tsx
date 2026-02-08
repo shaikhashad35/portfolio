@@ -41,7 +41,7 @@ const Footer = styled.footer`
     color: inherit;
     text-decoration: none;
     &:hover {
-      color: #64ffda;
+      color: ${({ theme }: any) => theme?.colors?.accent || '#64ffda'};
     }
   }
 `;
