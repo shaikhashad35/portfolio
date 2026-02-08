@@ -13,7 +13,7 @@ interface Education {
 }
 
 const EducationContainer = styled.div`
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 `;
 
@@ -25,9 +25,19 @@ const Title = styled.h2`
 `;
 
 const Timeline = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const EducationCard = styled(motion.div)`
@@ -36,10 +46,13 @@ const EducationCard = styled(motion.div)`
   padding: 2rem;
   position: relative;
   overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
     transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
   }
 
   &::before {

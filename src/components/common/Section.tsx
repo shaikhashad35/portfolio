@@ -11,7 +11,7 @@ interface SectionProps {
 }
 
 const SectionContainer = styled(motion.section)`
-  min-height: 100vh;
+  min-height: auto;
   padding: 6rem 2rem;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,25 @@ const SectionContainer = styled(motion.section)`
   color: ${({ theme }) => theme.colors.text};
   position: relative;
   overflow: hidden;
+
+  &:not(:first-of-type)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      ${({ theme }) => theme.colors.cardBorder},
+      ${({ theme }) => theme.colors.accent}44,
+      ${({ theme }) => theme.colors.cardBorder},
+      transparent
+    );
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 4rem 1rem;

@@ -66,7 +66,7 @@ const MenuButton = styled.button`
 
 const NavLinks = styled(motion.div)<{ isOpen: boolean }>`
   display: flex;
-  gap: 2rem;
+  gap: 1.2rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
@@ -85,48 +85,70 @@ const NavLinks = styled(motion.div)<{ isOpen: boolean }>`
 const NavItem = styled(Link)`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
   color: ${({ theme }) => theme.colors.textLight};
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: ${({ theme }) => theme.transitions.default};
+  position: relative;
+  padding-bottom: 4px;
 
   svg {
     font-size: 1.2rem;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.accent};
+    transition: ${({ theme }) => theme.transitions.default};
+  }
+
   &:hover, &.active {
     color: ${({ theme }) => theme.colors.accent};
+
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
 const ResumeLink = styled.a`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: ${({ theme }) => theme.colors.textLight};
+  gap: 0.3rem;
+  color: ${({ theme }) => theme.colors.accent};
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: ${({ theme }) => theme.transitions.default};
   text-decoration: none;
+  border: 1px solid ${({ theme }) => theme.colors.accent};
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
 
   svg {
     font-size: 1.2rem;
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.accent};
+    background-color: ${({ theme }) => theme.colors.accent}22;
   }
 `;
 
 const navItems: NavItem[] = [
   { title: 'Home', to: 'hero', icon: <FiHome /> },
   { title: 'Experience', to: 'experience', icon: <FiBriefcase /> },
-  { title: 'Projects', to: 'projects', icon: <FiCode /> },
   { title: 'Skills', to: 'skills', icon: <FiAward /> },
-  { title: 'Blog', to: 'blogs', icon: <FiBook /> },
+  // { title: 'Projects', to: 'projects', icon: <FiCode /> },
+  { title: 'Education', to: 'education', icon: <FiBook /> },
+  { title: 'Certificates', to: 'certificates', icon: <FiAward /> },
+  { title: 'Blog', to: 'blogs', icon: <FiFileText /> },
   { title: 'Contact', to: 'contact', icon: <FiMail /> },
 ];
 

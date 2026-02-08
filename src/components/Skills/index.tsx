@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Section from '../common/Section';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
+import { 
+  SiPython, SiDjango, SiDotnet, SiSpringboot,
+  SiAmazonaws, SiMicrosoftazure, SiGooglecloud 
+} from 'react-icons/si';
 
 // Import images
 import javaImg from '../../assets/images/java.png';
@@ -17,16 +21,20 @@ import vscodeImg from '../../assets/images/vscode.png';
 import postmanImg from '../../assets/images/postman.png';
 import dsaImg from '../../assets/images/dsa.JPG';
 
+interface Skill {
+  name: string;
+  image?: string;
+  icon?: React.ReactNode;
+  iconColor?: string;
+}
+
 interface SkillCategory {
   title: string;
-  skills: {
-    name: string;
-    image: string;
-  }[];
+  skills: Skill[];
 }
 
 const SkillsContainer = styled.div`
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
 `;
 
@@ -50,27 +58,68 @@ const CategoryTitle = styled.h3`
 
 const SkillsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2rem;
   align-items: center;
+  justify-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  @media (max-width: 320px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const SkillCard = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1.2rem 1rem;
   text-align: center;
+  width: 100%;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
     transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
   }
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 0.6rem;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+`;
+
+const IconWrapper = styled.div<{ $color?: string }>`
+  font-size: 50px;
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ $color, theme }) => $color || theme.colors.accent};
+
+  @media (max-width: 480px) {
+    font-size: 40px;
   }
 `;
 
@@ -79,16 +128,30 @@ const SkillName = styled.p`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 0.9rem;
   margin: 0;
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
 `;
 
 const skillCategories: SkillCategory[] = [
   {
     title: 'Back-End Development',
     skills: [
+      { name: 'Python', icon: <SiPython />, iconColor: '#3776AB' },
       { name: 'C#', image: csharpImg },
       { name: 'Java', image: javaImg },
       { name: 'Node.js', image: nodeImg },
       { name: 'SQL', image: sqlImg },
+    ]
+  },
+  {
+    title: 'Frameworks',
+    skills: [
+      { name: 'Django', icon: <SiDjango />, iconColor: '#092E20' },
+      { name: '.NET Core', icon: <SiDotnet />, iconColor: '#512BD4' },
+      { name: '.NET Framework', icon: <SiDotnet />, iconColor: '#512BD4' },
+      { name: 'Spring Boot', icon: <SiSpringboot />, iconColor: '#6DB33F' },
     ]
   },
   {
@@ -98,6 +161,14 @@ const skillCategories: SkillCategory[] = [
       { name: 'React', image: reactImg },
       { name: 'HTML5', image: htmlImg },
       { name: 'CSS3', image: cssImg },
+    ]
+  },
+  {
+    title: 'Cloud',
+    skills: [
+      { name: 'AWS', icon: <SiAmazonaws />, iconColor: '#FF9900' },
+      { name: 'Azure', icon: <SiMicrosoftazure />, iconColor: '#0078D4' },
+      { name: 'GCP', icon: <SiGooglecloud />, iconColor: '#4285F4' },
     ]
   },
   {
@@ -128,7 +199,11 @@ const Skills = () => {
             <SkillsGrid variants={staggerContainer}>
               {category.skills.map((skill, i) => (
                 <SkillCard key={i} variants={fadeInUp}>
-                  <img src={skill.image} alt={skill.name} />
+                  {skill.image ? (
+                    <img src={skill.image} alt={skill.name} />
+                  ) : (
+                    <IconWrapper $color={skill.iconColor}>{skill.icon}</IconWrapper>
+                  )}
                   <SkillName>{skill.name}</SkillName>
                 </SkillCard>
               ))}

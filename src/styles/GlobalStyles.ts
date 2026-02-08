@@ -37,6 +37,12 @@ export const GlobalStyles = createGlobalStyle`
     padding: 100px 0;
   }
 
+  /* Selection highlight */
+  ::selection {
+    background-color: ${theme.colors.accent}33;
+    color: ${theme.colors.textLight};
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
@@ -47,7 +53,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${theme.colors.accent};
+    background: ${theme.colors.accent}88;
     border-radius: 4px;
+
+    &:hover {
+      background: ${theme.colors.accent};
+    }
   }
 `;

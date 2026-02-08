@@ -4,9 +4,13 @@ import Section from '../common/Section';
 import { FiMail, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
 
 const ContactContainer = styled.div`
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   text-align: center;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border-radius: 12px;
+  padding: 3rem 2rem;
 `;
 
 const Title = styled.h2`
@@ -39,12 +43,21 @@ const SocialLinks = styled(motion.div)`
 
 const SocialLink = styled.a`
   color: ${({ theme }) => theme.colors.textLight};
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   transition: ${({ theme }) => theme.transitions.default};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
+    border-color: ${({ theme }) => theme.colors.cardHoverBorder};
     transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.1);
   }
 `;
 
