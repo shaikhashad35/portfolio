@@ -79,8 +79,9 @@ const SkillsGrid = styled(motion.div)`
 `;
 
 const SkillCard = styled(motion.div)`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 8px;
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropFilter};
+  border-radius: 12px;
   padding: 1.2rem 1rem;
   text-align: center;
   width: 100%;
@@ -90,7 +91,7 @@ const SkillCard = styled(motion.div)`
   &:hover {
     transform: translateY(-5px);
     border-color: ${({ theme }) => theme.colors.cardHoverBorder};
-    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
   }
 
   img {

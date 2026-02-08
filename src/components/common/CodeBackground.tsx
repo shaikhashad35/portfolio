@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { withPerformanceTracking } from '../../utils/performance';
+import { Theme } from '../../styles/theme';
 
 const Canvas = styled.canvas`
   position: fixed;
@@ -10,12 +11,14 @@ const Canvas = styled.canvas`
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.1;
+  opacity: ${({ theme }) => theme.mode === 'dark' ? 0.1 : 0.15};
+  transition: opacity 0.4s ease;
 `;
 
 const CodeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>();
+  const theme = useTheme() as Theme;
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -28,22 +31,25 @@ const CodeBackground = () => {
     canvas.height = window.innerHeight;
 
     const columns = Math.floor(canvas.width / 20);
-    const rows = Math.floor(canvas.height / 20);
     
-    ctx.fillStyle = '#0a192f';
+    ctx.fillStyle = theme.colors.codeBg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    ctx.fillStyle = '#64ffda';
+    ctx.fillStyle = theme.colors.codeColor;
     ctx.font = '15px Consolas';
 
     const symbols = '01アイウエオカキクケコサシスセソタチツテト';
     const raindrops = new Array(columns).fill(1);
 
     const matrix = () => {
-      ctx.fillStyle = 'rgba(10, 25, 47, 0.05)';
+      ctx.fillStyle = theme.mode === 'dark' 
+        ? 'rgba(10, 25, 47, 0.05)' 
+        : 'rgba(248, 249, 252, 0.03)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#64ffda';
+      ctx.fillStyle = theme.mode === 'dark'
+        ? theme.colors.codeColor
+        : '#3b82f6';
       ctx.textAlign = 'center';
 
       for (let i = 0; i < raindrops.length; i++) {
@@ -63,7 +69,7 @@ const CodeBackground = () => {
     };
 
     matrix();
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     draw();

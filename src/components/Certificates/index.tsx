@@ -38,16 +38,17 @@ const CardsGrid = styled(motion.div)`
 `;
 
 const Card = styled(motion.div)`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 8px;
-  padding: 1.5rem;
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdropFilter};
+  border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  padding: 1.5rem;
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
     transform: translateY(-5px);
     border-color: ${({ theme }) => theme.colors.cardHoverBorder};
-    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.05);
+    box-shadow: ${({ theme }) => theme.colors.glowGreen};
   }
 `;
 
